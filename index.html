@@ -1,11 +1,19 @@
 ---
-layout: home
-title: 我的博客首页
+layout: default
+title: 我的博客
 ---
-
 欢迎访问我的博客！
 
-👇 最新文章请看下方列表：
+<h1>👇 最新文章请看下方列表：</h1>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <p>{{ post.excerpt }}</p>
+    </li>
+  {% endfor %}
+</ul>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
