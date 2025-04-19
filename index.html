@@ -57,7 +57,7 @@ paginate: true
   {% for post in paginator.posts %}
     <li>
       <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-
+     
     </li>
   {% endfor %}
 </ul>
