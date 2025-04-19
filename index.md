@@ -13,55 +13,7 @@ title: 我的博客首页
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>我的网站导航</title>
-  <style>
-    body {
-      font-family: "微软雅黑", sans-serif;
-      background: #f8f9fa;
-      color: #333;
-      margin: 0;
-      padding: 2rem;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .section {
-      margin-bottom: 3rem;
-    }
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid #007BFF;
-      padding-left: 0.5rem;
-    }
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-    .link-card {
-      background: #fff;
-      padding: 1rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: 0.2s ease-in-out;
-    }
-    .link-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-    .link-card a {
-      color: #007BFF;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    .link-card p {
-      margin-top: 0.3rem;
-      color: #555;
-      font-size: 0.9rem;
-    }
-  </style>
+
 </head>
 <body>
   <h1>我的项目导航页</h1>
