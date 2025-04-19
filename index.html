@@ -1,4 +1,8 @@
-
+---
+layout: default
+title: 我的博客首页
+paginate: true
+---
 
 <head>
   <meta charset="UTF-8">
@@ -12,25 +16,24 @@
   <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Jancgk/Background@master/js/hideseek.min.js"></script>
   <style>
-/* 为容器添加白色背景和红色外框 */
-.bg-overlay {
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.8); /* 白色背景，带透明度 */
-  background-size: cover;
-  background-position: center;
-  border: 2px solid red; /* 红色外框 */
-  padding: 20px;
-  overflow: hidden;
-  border-radius: 10px; /* 可选：为外框添加圆角效果 */
-}
+    /* 为容器添加磨砂玻璃效果 */
+    .bg-overlay {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      padding: 20px;
+    }
 
-/* 确保文字内容清晰 */
-.content {
-  position: relative;
-  z-index: 10;
-  color: #333; /* 黑色文字 */
-  font-size: 1.2rem;
-}
+    /* 确保文字内容清晰 */
+    .content {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      font-size: 1.2rem;
+    }
 
     .pagination {
       display: flex;
