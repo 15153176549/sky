@@ -22,9 +22,8 @@ paginate: true
       position: relative;
       background-size: cover;
       background-position: center;
-      backdrop-filter: blur(6px); /* 减少模糊度 */
-      -webkit-backdrop-filter: blur(6px); /* 兼容 Safari */
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://example.com/your-image.jpg'); /* 添加渐变背景 */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       overflow: hidden;
       padding: 20px;
     }
@@ -33,11 +32,8 @@ paginate: true
     .content {
       position: relative;
       z-index: 10;
-      color: #e0e0e0; /* 使用浅灰色字体 */
+      color: #fff;
       font-size: 1.2rem;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加阴影效果 */
-      background-color: rgba(0, 0, 0, 0.4); /* 添加背景色 */
-      padding: 10px;
     }
 
     .pagination {
@@ -184,3 +180,33 @@ paginate: true
       <a href="https://yyddd.gogogal.top/" target="_blank">忧郁的弟弟家</a>
       <p>萝莉控的二次元秘密基地</p>
     </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>📝 最新文章</h2>
+<div class="bg-overlay" style="background-image: url('https://example.com/your-image.jpg');">
+  <div class="content">
+    <ul>
+      {% for post in paginator.posts %}
+        <li>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- 分页链接 -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; 上一页</a>
+  {% endif %}
+
+  <span>第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">下一页 &raquo;</a>
+  {% endif %}
+</div>
