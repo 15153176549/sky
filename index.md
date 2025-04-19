@@ -12,7 +12,6 @@ title: 我的博客首页
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>我的网站导航</title>
 
 </head>
 <body>
