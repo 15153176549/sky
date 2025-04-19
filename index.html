@@ -1,3 +1,9 @@
+---
+layout: default
+title: 我的博客首页
+paginate: true
+---
+
 <head>
   <meta charset="UTF-8">
   <title>我的博客首页</title>
@@ -11,41 +17,27 @@
   <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Jancgk/Background@master/js/hideseek.min.js"></script>
   <style>
-    /* 动态背景效果 */
+    /* 为容器添加磨砂玻璃效果 */
     .bg-overlay {
       position: relative;
       background-size: cover;
       background-position: center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(6px); /* 减少模糊度 */
+      -webkit-backdrop-filter: blur(6px); /* 兼容 Safari */
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://example.com/your-image.jpg'); /* 添加渐变背景 */
       overflow: hidden;
       padding: 20px;
-      height: 100vh; /* 背景区占满整个页面高度 */
-      z-index: 1;
     }
 
-    /* 主内容区 */
+    /* 确保文字内容清晰 */
     .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: #fff;
-      z-index: 2;
-    }
-
-    /* 页脚和其他内容部分 */
-    .content-section {
       position: relative;
-      background-color: #fff;
-      z-index: 3;
-      padding: 40px 20px;
-    }
-
-    /* 项目导航和文章内容区 */
-    .section {
-      margin-bottom: 30px;
+      z-index: 10;
+      color: #e0e0e0; /* 使用浅灰色字体 */
+      font-size: 1.2rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加阴影效果 */
+      background-color: rgba(0, 0, 0, 0.4); /* 添加背景色 */
+      padding: 10px;
     }
 
     .pagination {
@@ -56,7 +48,6 @@
       gap: 1rem;
       font-weight: bold;
     }
-
     .pagination a {
       color: #007BFF;
       text-decoration: none;
@@ -64,48 +55,13 @@
       border: 1px solid #007BFF;
       border-radius: 5px;
     }
-
     .pagination span {
       color: #555;
     }
-
-    /* 项目导航布局 */
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    .link-card {
-      background-color: #f4f4f4;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .link-card a {
-      font-size: 1.2rem;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .link-card p {
-      font-size: 1rem;
-      color: #777;
-    }
-
-    /* 确保分页链接布局居中 */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
   </style>
 </head>
 
 <body class="home blog logged-in" ondragstart="return false">
-    <!-- 背景区 -->
     <section class="hidden-xs">
         <ul class="cb-slideshow">
             <li><span class="li_img1"></span></li>
@@ -117,84 +73,114 @@
         </ul>
     </section>
     
-    <!-- 背景区和内容区 -->
-    <div class="bg-overlay" style="background-image: url('https://example.com/your-image.jpg');">
-        <div class="content">
-            <h1>我的项目导航页</h1>
-            <p>欢迎来到我的博客首页！</p>
+    <div class="GalMenu GalDropDown">
+        <div class="circle" id="gal">
+            <div class="ring">
+                <a href="https://Beats0.github.io/www.mygalgame.com" title="首页" class="menuItem">首页</a>
+                <a href="https://Beats0.github.io/www.mygalgame.com/page/1/" target="_blank" title="" class="menuItem">下一页</a>
+                <a href="https://Beats0.github.io/www.mygalgame.com/message.html" target="_blank" title="" class="menuItem">留言版</a>
+                <a href="https://Beats0.github.io/www.mygalgame.com/?orderby=views" target="_blank" title="" class="menuItem">热门排行</a>
+                <a href="https://Beats0.github.io/www.mygalgame.com/gengxinrizhi.html" target="_blank" title="" class="menuItem">更新日志</a>
+                <a href="https://Beats0.github.io/www.mygalgame.com/page/N1/" target="_blank" title="" class="menuItem">上一页</a>
+            </div>
+            <audio id="audio" src="https://www.hacg.me/mp3/onj001.mp3"></audio>
         </div>
     </div>
 
-    <!-- 主内容部分：项目导航和最新文章 -->
-    <div class="content-section">
-        <div class="section">
-          <h2>🎮 游戏相关网站</h2>
-          <div class="link-grid">
-            <div class="link-card">
-              <a href="https://sky.sfcrom.com/" target="_blank">游戏天空</a>
-              <p>怀旧游戏资源天堂</p>
+    <div id="zan-bodyer">
+        <div class="container">
+            <div class="row">
+                <div class="player_show">
+                    <div class="play">
+                        <div id="aplayer">
+                            <script>
+                                $(function () {
+                                    $.ajax({
+                                        url: 'https://api.i-meto.com/meting/api?server=netease&type=playlist&id=879840820',
+                                        success: function (list) {
+                                            var ap = new APlayer({
+                                                container: document.getElementById('aplayer'),
+                                                mini: false,
+                                                mutex: true,
+                                                listMaxHeight: '280px',
+                                                lrcType: 3,
+                                                theme: '#ff69b4',
+                                                order: 'random',
+                                                listFolded:true,
+                                                audio: list
+                                            })
+                                        }
+                                    })
+                                })
+                            </script>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="link-card">
-              <a href="https://2cy.202588.cn/" target="_blank">二次元码头</a>
-              <p>二次元向游戏聚合平台</p>
-            </div>
-            <div class="link-card">
-              <a href="https://play.202588.cn/" target="_blank">爱玩小子</a>
-              <p>轻松好玩的在线小游戏</p>
-            </div>
-            <div class="link-card">
-              <a href="https://boy.fcrom.cn/" target="_blank">游戏男孩</a>
-              <p>GBA/FC 怀旧经典</p>
-            </div>
-            <div class="link-card">
-              <a href="https://lad.sfcrom.cn/" target="_blank">游戏少年</a>
-              <p>复古游戏少年的世界</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>🌐 其他网站</h2>
-          <div class="link-grid">
-            <div class="link-card">
-              <a href="https://mpay.52yzk.com/" target="_blank">码支付</a>
-              <p>扫码支付 / 聚合支付平台</p>
-            </div>
-            <div class="link-card">
-              <a href="https://chs.ogsgame.top/" target="_blank">OGS汉化小组</a>
-              <p>优质游戏中文化之家</p>
-            </div>
-            <div class="link-card">
-              <a href="https://yyddd.gogogal.top/" target="_blank">忧郁的弟弟家</a>
-              <p>萝莉控的二次元秘密基地</p>
-            </div>
-          </div>
-        </div>
-
-        <hr>
-
-        <h2>📝 最新文章</h2>
-        <div class="content">
-            <ul>
-              {% for post in paginator.posts %}
-                <li>
-                  <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                </li>
-              {% endfor %}
-            </ul>
-        </div>
-
-        <!-- 分页链接 -->
-        <div class="pagination">
-          {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; 上一页</a>
-          {% endif %}
-
-          <span>第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
-
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | relative_url }}">下一页 &raquo;</a>
-          {% endif %}
         </div>
     </div>
-</body>
+
+    <footer id="zan-footer">
+        <div class="row">
+            <div class="zan-footer-col-md-2"><a href="https://Beats0.github.io/www.mygalgame.com/page/N1/" target="_blank"><i class="fa fa-angle-double-left fa-lg"></i>2018<span class="hidden-xs">(New Page)</span></a></div>
+            <div class="zan-footer-col-md-6">
+                <div class="search">
+                    <input id="search-highlight" name="search-highlight" placeholder="Game Filter" type="text" data-list=".highlight_list" autocomplete="off">
+                    <ul id="search-item" class="vertical highlight_list"></ul>
+                </div>
+            </div>
+            <div class="zan-footer-col-md-2"><a href="https://Beats0.github.io/www.mygalgame.com/page/1/" target="_blank">2017<span class="hidden-xs">(Old Page)</span><i class="fa fa-angle-double-right fa-lg"></i></a></div>
+        </div>
+        <div class="footer-site">
+            <a href="https://www.mygalgame.com/" target="_blank"><i class="fa fa-home"></i><span class="hidden-xs"> Mygalgame | </span></a>
+            <a href="https://Beats0.github.io/www.mygalgame.com/" target="_blank"><i class="fa fa-link"></i><span class="hidden-xs"> Mygalgame backup | </span></a>
+            <a href="https://www.mmgal.com/donate.html" target="_blank"><i class="fa fa-dollar"></i><span class="hidden-xs"> Donate Mygalgame &copy;</span></a>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Jancgk/Background@master/js/Gal.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/beats0/www.mygalgame.com@master/js/fade.js"></script>
+    <script>console.log('%c       ', 'font-size: 150px; background: url(https://steamuserimages-a.akamaihd.net/ugc/5098669332637110369/430717B5C4D953687B1696E2F7FDCC0248A559F2/) no-repeat;');$(document).ready(function(){$('body').GalMenu({'menu':'GalDropDown'});var resource_list="https://Beats0.github.io/www.mygalgame.com/Game_list/mygalgameList.json";$.getJSON(resource_list,function(data,status){if(status){for(let i=0;i<data.length;i++){$("#search-item").append("<li><a href='"+data[i].git_url+"'target=\"_blank\">"+data[i].title+"</a></li>")}}else{console.log("400: Invalid request"+status)}});$('#search-highlight').hideseek({highlight:true});setTimeout(function(){$(".aplayer-list").addClass("aplayer-list-hide").children().css("text-align","left")},3000);$('.hero__scroll').on('click',function(e){$('html, body').animate({scrollTop:$(window).height()},1200)})});</script>
+
+<h1>我的项目导航页</h1>
+
+<div class="section">
+  <h2>🎮 游戏相关网站</h2>
+  <div class="link-grid">
+    <div class="link-card">
+      <a href="https://sky.sfcrom.com/" target="_blank">游戏天空</a>
+      <p>怀旧游戏资源天堂</p>
+    </div>
+    <div class="link-card">
+      <a href="https://2cy.202588.cn/" target="_blank">二次元码头</a>
+      <p>二次元向游戏聚合平台</p>
+    </div>
+    <div class="link-card">
+      <a href="https://play.202588.cn/" target="_blank">爱玩小子</a>
+      <p>轻松好玩的在线小游戏</p>
+    </div>
+    <div class="link-card">
+      <a href="https://boy.fcrom.cn/" target="_blank">游戏男孩</a>
+      <p>GBA/FC 怀旧经典</p>
+    </div>
+    <div class="link-card">
+      <a href="https://lad.sfcrom.cn/" target="_blank">游戏少年</a>
+      <p>复古游戏少年的世界</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🌐 其他网站</h2>
+  <div class="link-grid">
+    <div class="link-card">
+      <a href="https://mpay.52yzk.com/" target="_blank">码支付</a>
+      <p>扫码支付 / 聚合支付平台</p>
+    </div>
+    <div class="link-card">
+      <a href="https://chs.ogsgame.top/" target="_blank">OGS汉化小组</a>
+      <p>优质游戏中文化之家</p>
+    </div>
+    <div class="link-card">
+      <a href="https://yyddd.gogogal.top/" target="_blank">忧郁的弟弟家</a>
+      <p>萝莉控的二次元秘密基地</p>
+    </div>
