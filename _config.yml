@@ -1,14 +1,4 @@
-theme: jekyll-theme-cayman   # 使用默认的 Jekyll 主题
-collections:
-  posts:
-    output: true  # 确保文章能够输出为 HTML 页面
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
+title: 我的博客
+description: WordPress 同步过来的文章
+baseurl: "" # 如果是 user.github.io 则为空
+theme: minima # 使用默认主题
