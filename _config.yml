@@ -7,22 +7,3 @@ theme: minima # 使用默认主题
 paginate: 10
 paginate_path: "/page:num"
 
-# 启用标签支持
-collections:
-  posts:
-    output: true
-    permalink: /:year/:month/:day/:title/  # 文章 URL 模式
-
-# 启用分类（默认启用）
-defaults:
-  - scope:
-      path: "_posts"
-    values:
-      layout: "post"
-      tags: []
-      categories: []
-      excerpt_separator: "<!--more-->"
-
-# 启用摘录的设置
-excerpt_separator: "<!--more-->"
-
