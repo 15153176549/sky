@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 我的博客首页
+paginate: true
 ---
 
 <h1>我的项目导航页</h1>
@@ -53,7 +54,7 @@ title: 我的博客首页
 
 <h2>📝 最新文章</h2>
 <ul>
-  {% for post in site.posts %}
+  {% for post in paginator.posts %}
     <li>
       <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <p>{{ post.excerpt }}</p>
@@ -61,52 +62,36 @@ title: 我的博客首页
   {% endfor %}
 </ul>
 
+<!-- 分页链接 -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; 上一页</a>
+  {% endif %}
+
+  <span>第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">下一页 &raquo;</a>
+  {% endif %}
+</div>
+
 <style>
-  body {
-    font-family: "微软雅黑", sans-serif;
-    background: #f8f9fa;
-    color: #333;
-    margin: 0;
-    padding: 2rem;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .section {
-    margin-bottom: 3rem;
-  }
-  .section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    border-left: 5px solid #007BFF;
-    padding-left: 0.5rem;
-  }
-  .link-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
     gap: 1rem;
+    font-weight: bold;
   }
-  .link-card {
-    background: #fff;
-    padding: 1rem 1.2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: 0.2s ease-in-out;
-  }
-  .link-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  }
-  .link-card a {
+  .pagination a {
     color: #007BFF;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
   }
-  .link-card p {
-    margin-top: 0.3rem;
+  .pagination span {
     color: #555;
-    font-size: 0.9rem;
   }
 </style>
