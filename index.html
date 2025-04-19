@@ -16,6 +16,45 @@ paginate: true
   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Jancgk/Background@master/js/hideseek.min.js"></script>
+  <style>
+    /* 为容器添加磨砂玻璃效果 */
+    .bg-overlay {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    /* 确保文字内容清晰 */
+    .content {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 1rem;
+      font-weight: bold;
+    }
+    .pagination a {
+      color: #007BFF;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid #007BFF;
+      border-radius: 5px;
+    }
+    .pagination span {
+      color: #555;
+    }
+  </style>
 </head>
 
 <body class="home blog logged-in" ondragstart="return false">
@@ -147,13 +186,17 @@ paginate: true
 <hr>
 
 <h2>📝 最新文章</h2>
-<ul>
-  {% for post in paginator.posts %}
-    <li>
-      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-    </li>
-  {% endfor %}
-</ul>
+<div class="bg-overlay" style="background-image: url('https://example.com/your-image.jpg');">
+  <div class="content">
+    <ul>
+      {% for post in paginator.posts %}
+        <li>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 
 <!-- 分页链接 -->
 <div class="pagination">
@@ -167,26 +210,3 @@ paginate: true
     <a href="{{ paginator.next_page_path | relative_url }}">下一页 &raquo;</a>
   {% endif %}
 </div>
-
-<style>
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-    gap: 1rem;
-    font-weight: bold;
-  }
-  .pagination a {
-    color: #007BFF;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid #007BFF;
-    border-radius: 5px;
-  }
-  .pagination span {
-    color: #555;
-  }
-</style>
-
-</body>
